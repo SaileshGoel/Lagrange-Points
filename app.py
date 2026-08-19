@@ -6,7 +6,6 @@ import streamlit as st
 
 from lagrange import SystemParameters, lagrange_points, routh_stable, simulate_satellite
 
-
 st.set_page_config(
     page_title="Lagrange Points Explorer",
     page_icon="🪐",
