@@ -61,7 +61,7 @@ def lagrange_points(p):
     l1 = _safe_root(_collinear_equation, x1, x2, args=(p,))  # <--- LINE 65
 
     # Collinear points.
-   l1 = _safe_root(_collinear_equation, x1, x2, args=(p,))
+    l1 = _safe_root(_collinear_equation, x1, x2, args=(p,))
     l2 = brentq(_collinear_equation, x2 + 1e-10 * a, x2 + 100.0 * a)
     l3 = brentq(_collinear_equation, x1 - 100.0 * a, x1 - 1e-10 * a)
 
