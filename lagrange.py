@@ -52,17 +52,16 @@ def _collinear_equation(x: float,*extra_args, p: SystemParameters) -> float:
       )
 
 
-def _safe_root(f, lo, hi, args=(), eps=1e-5):
-    a = lo + eps
-    b = hi - eps
-    try:
-        # Check sign change manually if needed
-        if f(a, *args) * f(b, *args) > 0:
-            return None  # Or handle sign failure
-        return brentq(f, a, b, args=args, maxiter=300)
-    except (TypeError, ValueError) as e:
-        # Debugging fallback or error handling
-        return None
+def _safe_root(f, lo: float, hi: float, p: SystemParameters) -> float:
+    # Avoid singularities at the two massive bodies.
+    eps = max(1e-10, (hi - lo) * 1e-10)
+    return brentq(
+        f,
+        lo + eps,
+        hi - eps,
+        args=(p,),
+        maxiter=300,
+    )
 
 
 def lagrange_points(p: SystemParameters) -> Dict[str, np.ndarray]:
@@ -71,9 +70,19 @@ def lagrange_points(p: SystemParameters) -> Dict[str, np.ndarray]:
     a = p.separation
 
     # Collinear points.
-    l1 = _safe_root(_collinear_equation, x1, x2)
-    l2 = brentq(_collinear_equation, x2 + 1e-10 * a, x2 + 100.0 * a)
-    l3 = brentq(_collinear_equation, x1 - 100.0 * a, x1 - 1e-10 * a)
+    l1 = _safe_root(_collinear_equation, x1, x2, p)
+    l2 = brentq(
+    _collinear_equation,
+    x2 + 1e-10 * a,
+    x2 + 100.0 * a,
+    args=(p,),
+    )
+    l3 = brentq(
+    _collinear_equation,
+    x1 - 100.0 * a,
+    x1 - 1e-10 * a,
+    args=(p,),
+    )
 
     # Triangular points.
     xt = a * (0.5 - p.mu)
