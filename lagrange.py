@@ -40,20 +40,29 @@ def body_positions(p: SystemParameters) -> Tuple[float, float]:
     return x1, x2
 
 
-def _collinear_equation(x: float, p: SystemParameters) -> float:
+def _collinear_equation(x: float,*extra_args, p: SystemParameters) -> float:
     """dOmega/dx = 0 for a point on the rotating x-axis."""
     x1, x2 = body_positions(p)
     return (
+        val = ... 
+    return float(val)
         p.omega**2 * x
         - p.G * p.m1 * (x - x1) / abs(x - x1) ** 3
         - p.G * p.m2 * (x - x2) / abs(x - x2) ** 3
     )
 
 
-def _safe_root(f, lo: float, hi: float) -> float:
-    # Avoid singularities at the two massive bodies.
-    eps = max(1e-10, (hi - lo) * 1e-10)
-    return brentq(f, lo + eps, hi - eps, maxiter=300)
+def _safe_root(f, lo, hi, args=(), eps=1e-5):
+    a = lo + eps
+    b = hi - eps
+    try:
+        # Check sign change manually if needed
+        if f(a, *args) * f(b, *args) > 0:
+            return None  # Or handle sign failure
+        return brentq(f, a, b, args=args, maxiter=300)
+    except (TypeError, ValueError) as e:
+        # Debugging fallback or error handling
+        return None
 
 
 def lagrange_points(p: SystemParameters) -> Dict[str, np.ndarray]:
