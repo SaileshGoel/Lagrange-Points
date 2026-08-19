@@ -41,20 +41,6 @@ Plotly
 Manim
 
 
-
-## Render the Manim explanation
-
-```bash
-manim -pqh manim_scene.py LagrangePointsIntro
-```
-
-For a faster preview:
-
-```bash
-manim -pql manim_scene.py LagrangePointsIntro
-```
-
-
 ## Core equations
 
 For total mass `M = m1 + m2`, separation `a`, and
