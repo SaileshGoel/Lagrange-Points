@@ -44,7 +44,7 @@ def _collinear_equation(x: float,*extra_args, p: SystemParameters) -> float:
     """dOmega/dx = 0 for a point on the rotating x-axis."""
     x1, x2 = body_positions(p)
     return (
-        val = ... 
+        val == ... 
     return float(val)
         p.omega**2 * x
         - p.G * p.m1 * (x - x1) / abs(x - x1) ** 3
