@@ -50,10 +50,10 @@ def _collinear_equation(x: float, *args, p: SystemParameters) -> float:
     )
 
 
-def _safe_root(f, lo: float, hi: float,args=(), maxiter=300) -> float:
+def _safe_root(f, lo, hi, args=(), maxiter=300):
     # Avoid singularities at the two massive bodies.
     eps = max(1e-10, (hi - lo) * 1e-10)
-    return brentq(f, lo + eps, hi - eps,args=args, maxiter=maxiter)
+    return brentq(f, lo + eps, hi - eps, args=args, maxiter=maxiter)
 
 
 def lagrange_points(p: SystemParameters) -> Dict[str, np.ndarray]:
@@ -62,7 +62,7 @@ def lagrange_points(p: SystemParameters) -> Dict[str, np.ndarray]:
     a = p.separation
 
     # Collinear points.
-    l1 = _safe_root(_collinear_equation, x1, x2)
+   l1 = _safe_root(_collinear_equation, x1, x2, args=(p,))
     l2 = brentq(_collinear_equation, x2 + 1e-10 * a, x2 + 100.0 * a)
     l3 = brentq(_collinear_equation, x1 - 100.0 * a, x1 - 1e-10 * a)
 
