@@ -51,8 +51,8 @@ def _collinear_equation(x: float, *args, p: SystemParameters) -> float:
 
 
 def _safe_root(f, lo, hi, args=(), maxiter=300):
-    # Avoid singularities at the two massive bodies.
-    eps = max(1e-10, (hi - lo) * 1e-10)
+    lo, hi = float(lo), float(hi)
+    eps = max(1e-10, float((hi - lo) * 1e-10))
     return brentq(f, lo + eps, hi - eps, args=args, maxiter=maxiter)
 
 def lagrange_points(p):
