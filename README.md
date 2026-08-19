@@ -40,20 +40,7 @@ Streamlit
 Plotly
 Manim
 
-## 🚀 Run Locally
 
-```bash
-pip install -r requirements.txt
-streamlit run app.py
-
-## Run the interactive app
-
-```bash
-python -m pip install -r requirements.txt
-streamlit run app.py
-```
-
-Then open the local Streamlit URL shown in the terminal.
 
 ## Render the Manim explanation
 
@@ -67,15 +54,6 @@ For a faster preview:
 manim -pql manim_scene.py LagrangePointsIntro
 ```
 
-## Suggested hackathon demo flow
-
-1. Start with equal-ish masses and separation = 10 units.
-2. Select **L4** and use a tiny perturbation.
-3. Show the satellite remaining near the triangular point in the rotating frame.
-4. Select **L1** with the same perturbation and show the displacement growing.
-5. Increase the secondary mass until the L4/L5 stability condition is violated.
-6. Change the separation and show that the dimensionless geometry is similar while the orbital period changes.
-7. Use the Manim animation as the 60–90 second project introduction.
 
 ## Core equations
 
