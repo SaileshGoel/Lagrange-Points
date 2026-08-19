@@ -3,4 +3,3 @@ scipy>=1.13
 rebound>=4.4
 plotly>=5.22
 streamlit>=1.36
-manim>=0.18
