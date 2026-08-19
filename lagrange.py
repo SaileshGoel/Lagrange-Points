@@ -56,8 +56,9 @@ def _safe_root(f, lo, hi, args=(), maxiter=300):
     return brentq(f, lo + eps, hi - eps, args=args, maxiter=maxiter)
 
 def lagrange_points(p):
-    x1 = ...
-    x2 = ...
+    x1 = -1.5
+    x2 = 1.0 - p.mu
+    print(f"DEBUG: type(x1)={type(x1)}, type(x2)={type(x2)}")
     l1 = _safe_root(_collinear_equation, x1, x2, args=(p,))  # <--- LINE 65
 
     # Collinear points.
