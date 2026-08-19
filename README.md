@@ -1,13 +1,8 @@
-# Lagrange Points Explorer — Python Hackathon
+# 🚀 Lagrange Points Simulation
 
-A Python-only interactive simulation for the **Lagrange Points (L1–L5)** using:
+An interactive Python-based simulation of the five Lagrange points using REBOUND, NumPy, SciPy, Streamlit and Manim.
 
-- **REBOUND** — N-body gravitational integration
-- **NumPy** — numerical calculations
-- **SciPy** — Lagrange-point root solving
-- **Plotly** — interactive rotating-frame visualization
-- **Streamlit** — live parameter controls
-- **Manim** — polished explanatory animation
+## 🎯 Hackathon Project
 
 ## What the project demonstrates
 
@@ -18,6 +13,38 @@ A Python-only interactive simulation for the **Lagrange Points (L1–L5)** using
 5. The display is transformed to the rotating frame, where ideal Lagrange points remain fixed.
 6. Small perturbations show the difference between the unstable collinear points (L1–L3) and the conditionally stable triangular points (L4–L5).
 7. Changing either planet mass or separation updates the locations and orbital timescale.
+
+
+This project visualizes the five Lagrange points:
+
+- L1
+- L2
+- L3
+- L4
+- L5
+
+Users can modify:
+
+- Planet masses
+- Planet separation
+- Satellite position
+- Simulation duration
+
+## 🛠️ Technologies
+
+Python
+REBOUND
+NumPy
+SciPy
+Streamlit
+Plotly
+Manim
+
+## 🚀 Run Locally
+
+```bash
+pip install -r requirements.txt
+streamlit run app.py
 
 ## Run the interactive app
 
