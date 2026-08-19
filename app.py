@@ -4,7 +4,7 @@ import numpy as np
 import plotly.graph_objects as go
 import streamlit as st
 
-from lagrange import SystemParameters,lagrange_points,routh_stable,simulate_orbit
+from lagrange import SystemParameters,lagrange_points,routh_stable
 
 st.set_page_config(
     page_title="Lagrange Points Explorer",
