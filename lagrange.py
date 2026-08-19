@@ -60,9 +60,19 @@ def lagrange_points(p: SystemParameters) -> Dict[str, np.ndarray]:
     a = p.separation
 
     # Collinear points.
-    l1 = _safe_root(_collinear_equation, x1, x2, args=(p,))
-    l2 = brentq(_collinear_equation, x2 + 1e-10 * a, x2 + 100.0 * a)
-    l3 = brentq(_collinear_equation, x1 - 100.0 * a, x1 - 1e-10 * a)
+    l1 = _safe_root(lambda x: _collinear_equation(x, p), x1, x2)
+    l2 = brentq(
+        _collinear_equation,
+        x2 + 1e-10 * a,
+        x2 + 100.0 * a,
+        args=(p,),
+    )
+    l3 = brentq(
+        _collinear_equation,
+        x1 - 100.0 * a,
+        x1 - 1e-10 * a,
+        args=(p,),
+    )
 
     # Triangular points.
     xt = a * (0.5 - p.mu)
