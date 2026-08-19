@@ -55,11 +55,10 @@ def _safe_root(f, lo, hi, args=(), maxiter=300):
     eps = max(1e-10, (hi - lo) * 1e-10)
     return brentq(f, lo + eps, hi - eps, args=args, maxiter=maxiter)
 
-
-def lagrange_points(p: SystemParameters) -> Dict[str, np.ndarray]:
-    """Compute L1-L5 in the rotating frame."""
-    x1, x2 = body_positions(p)
-    a = p.separation
+def lagrange_points(p):
+    x1 = ...
+    x2 = ...
+    l1 = _safe_root(_collinear_equation, x1, x2, args=(p,))  # <--- LINE 65
 
     # Collinear points.
    l1 = _safe_root(_collinear_equation, x1, x2, args=(p,))
